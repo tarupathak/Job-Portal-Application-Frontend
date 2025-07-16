@@ -1,83 +1,76 @@
-# 🧠 Job Listing Backend (Express + MongoDB)
+# 💼 Job Listing Frontend (Next.js + Tailwind CSS)
 
-This is the **backend service** for the **Job Listing Web Application**. It serves job data through RESTful APIs and uses MongoDB for storing and querying jobs. The backend is built with **Express.js**, **Node.js**, and **Mongoose**.
+This is the **frontend** for the **Job Listing Web Application**. It allows users to browse job opportunities, filter jobs by location, and view job details dynamically — all within a modern and responsive interface.
 
 ---
 
 ## ✅ Features
 
-- 📥 Imports job listings from a provided JSON file into MongoDB
-- 📡 Provides REST APIs to fetch all jobs and filter by location
-- 🔍 Location-based filtering happens on the server side for performance
-- ⚙️ Built with scalable backend architecture using Express
+- 📄 Displays a scrollable list of jobs on the left-hand side
+- 📌 Clicking a job displays details on the right-hand side
+- 🔍 Location-based search filter
+- ⚡ Dynamic rendering of job title, location, description, and more
+- 🎨 Styled with Tailwind CSS
+- 🔗 Connects to a backend REST API (Express + MongoDB)
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer     | Technology          |
-|-----------|---------------------|
-| Runtime   | Node.js             |
-| Server    | Express.js          |
-| Database  | MongoDB Atlas       |
-| ORM       | Mongoose            |
-| Config    | dotenv              |
-| CORS      | cors                |
+| Layer      | Technology         |
+|------------|--------------------|
+| Framework  | Next.js (TypeScript) |
+| Styling    | Tailwind CSS       |
+| HTTP       | Axios              |
+| Language   | TypeScript         |
 
 ---
 
 ## 📁 Project Structure
 
-backend/
-├── models/
-│ └── Job.js # Mongoose schema for job listings
-├── routes/
-│ └── jobs.js # Job-related API routes
-├── index.js # Main server file
-├── .env # Environment variables (Mongo URI)
+frontend/
+├── app/
+│ ├── components/
+│ │ ├── JobList.tsx # Displays job list
+│ │ └── JobDetail.tsx # Displays job details
+│ └── page.tsx # Main homepage layout
+├── styles/
+│ └── globals.css # Tailwind base styles
+├── tailwind.config.ts # Tailwind config
+├── postcss.config.js
+├── tsconfig.json
 ├── package.json
 
 ## 🚀 Getting Started Locally
 
 ### 1️⃣ Clone the Repository
 
-git clone [git@github.com:tarupathak/Job-Portal-Application-Backend.git](https://github.com/tarupathak/Job-Portal-Application-Backend.git)
-cd server
+git clone [https://github.com/tarupathak/Job-Portal-Application-Frontend](https://github.com/tarupathak/Job-Portal-Application-Frontend)
+cd client
 
 ### 2️⃣ Install Dependencies
 
 npm install
 
-### 3️⃣ Configure Environment Variables
+### 3️⃣ Start the Development Server
 
-Create a .env file in the root folder with the following:
+npm run dev
 
-MONGO_URI=mongodb+srv://<username>:<password>@<your-cluster>.mongodb.net/jobDB?retryWrites=true&w=majority
-Replace <username>, <password>, and <your-cluster> with your actual MongoDB Atlas credentials.
+Frontend will be available at:
 
-### 4️⃣ Import Job Data to MongoDB (if not already imported)
+http://localhost:3000
 
-You can import JSON data into MongoDB using Compass or a script (optional):
 
-# If using mongoimport CLI (optional):
-mongoimport --uri="$MONGO_URI" --collection=jobs --file=data/jobs.json --jsonArray
+## 🌐 API Integration
 
-### 5️⃣ Start the Server
+The frontend connects to:
 
-npm start
+GET /api/jobs – to fetch all jobs
 
-The server will run at:
+GET /api/jobs/search?location=Delhi – to filter jobs by location
 
-http://localhost:5000
-
-## 🌐 API Endpoints
-
-GET /api/jobs
-Returns all job listings.
-
-GET /api/jobs/search?location=Bangalore
-Returns jobs that match the provided location string (case-insensitive).
+You can configure the API base URL in page.tsx.
 
 ## 📡 Deployed Backend
 
-🔗 [https://job-listing-backend.up.railway.app](https://job-portal-application-backend-production.up.railway.app/)
+🔗 [https://job-portal-application-frontend-lnt.vercel.app/](https://job-portal-application-frontend-lnt.vercel.app/)

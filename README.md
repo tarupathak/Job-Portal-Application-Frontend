@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Job Listing Backend (Express + MongoDB)
 
-## Getting Started
+This is the **backend service** for the **Job Listing Web Application**. It serves job data through RESTful APIs and uses MongoDB for storing and querying jobs. The backend is built with **Express.js**, **Node.js**, and **Mongoose**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✅ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 📥 Imports job listings from a provided JSON file into MongoDB
+- 📡 Provides REST APIs to fetch all jobs and filter by location
+- 🔍 Location-based filtering happens on the server side for performance
+- ⚙️ Built with scalable backend architecture using Express
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+| Layer     | Technology          |
+|-----------|---------------------|
+| Runtime   | Node.js             |
+| Server    | Express.js          |
+| Database  | MongoDB Atlas       |
+| ORM       | Mongoose            |
+| Config    | dotenv              |
+| CORS      | cors                |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+backend/
+├── models/
+│ └── Job.js # Mongoose schema for job listings
+├── routes/
+│ └── jobs.js # Job-related API routes
+├── index.js # Main server file
+├── .env # Environment variables (Mongo URI)
+├── package.json
 
-## Deploy on Vercel
+## 🚀 Getting Started Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 1️⃣ Clone the Repository
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone [git@github.com:tarupathak/Job-Portal-Application-Backend.git](https://github.com/tarupathak/Job-Portal-Application-Backend.git)
+cd server
+
+### 2️⃣ Install Dependencies
+
+npm install
+
+### 3️⃣ Configure Environment Variables
+
+Create a .env file in the root folder with the following:
+
+MONGO_URI=mongodb+srv://<username>:<password>@<your-cluster>.mongodb.net/jobDB?retryWrites=true&w=majority
+Replace <username>, <password>, and <your-cluster> with your actual MongoDB Atlas credentials.
+
+### 4️⃣ Import Job Data to MongoDB (if not already imported)
+
+You can import JSON data into MongoDB using Compass or a script (optional):
+
+# If using mongoimport CLI (optional):
+mongoimport --uri="$MONGO_URI" --collection=jobs --file=data/jobs.json --jsonArray
+
+### 5️⃣ Start the Server
+
+npm start
+
+The server will run at:
+
+http://localhost:5000
+
+## 🌐 API Endpoints
+
+GET /api/jobs
+Returns all job listings.
+
+GET /api/jobs/search?location=Bangalore
+Returns jobs that match the provided location string (case-insensitive).
+
+## 📡 Deployed Backend
+
+🔗 [https://job-listing-backend.up.railway.app](https://job-portal-application-backend-production.up.railway.app/)

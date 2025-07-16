@@ -31,6 +31,7 @@ This is the **frontend** for the **Job Listing Web Application**. It allows user
 ### 1️⃣ Clone the Repository
 
 git clone [https://github.com/tarupathak/Job-Portal-Application-Frontend](https://github.com/tarupathak/Job-Portal-Application-Frontend)
+
 cd client
 
 ### 2️⃣ Install Dependencies

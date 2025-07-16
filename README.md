@@ -1,4 +1,4 @@
-# 💼 Job Listing Frontend (Next.js + Tailwind CSS)
+# 💼 Job Listing Frontend (Next.js + Tailwind CSS + TypeScript)
 
 This is the **frontend** for the **Job Listing Web Application**. It allows users to browse job opportunities, filter jobs by location, and view job details dynamically — all within a modern and responsive interface.
 

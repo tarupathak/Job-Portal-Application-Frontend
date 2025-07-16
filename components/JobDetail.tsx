@@ -7,10 +7,12 @@ interface JobDetailProps {
 
 export default function JobDetail({ job }: JobDetailProps) {
   return (
-    <div className="p-6 bg-white rounded-lg shadow-sm h-full">
-      <div className="flex justify-between items-start border-b pb-4 mb-4">
+    <div className="p-4 sm:p-6 bg-white rounded-lg shadow-sm h-full overflow-y-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 mb-4 gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">{job.title}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
+            {job.title}
+          </h2>
           <p className="text-gray-600 text-sm mt-1">{job.company}</p>
           <p className="text-gray-500 text-sm">{job.location}</p>
         </div>
@@ -18,12 +20,13 @@ export default function JobDetail({ job }: JobDetailProps) {
           href={job.job_link}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 text-sm shadow transition"
+          className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 text-sm shadow transition whitespace-nowrap"
         >
           ⚡ Quick Apply
         </a>
       </div>
 
+      {/* Job Info */}
       <div className="space-y-3 text-sm text-gray-700">
         <div>
           <span className="font-medium">Employment Type:</span>{" "}
@@ -39,7 +42,6 @@ export default function JobDetail({ job }: JobDetailProps) {
             {new Date(job.postedDateTime).toDateString()}
           </span>
         </div>
-
         <div className="flex flex-wrap gap-2 pt-2">
           {["Management", "Heavy lifting", "Sanitation", "Entry level"].map(
             (tag, index) => (
@@ -53,17 +55,20 @@ export default function JobDetail({ job }: JobDetailProps) {
           )}
         </div>
       </div>
-
       <div className="mt-6">
-        <h3 className="text-lg font-semibold mb-2 text-gray-800">
+        <h3 className="text-base sm:text-lg font-semibold mb-2 text-gray-800">
           Full Job Description
         </h3>
         <p className="text-sm text-gray-600 leading-relaxed">
-          This is a <span className="font-medium">{job.employment_type?.toLowerCase()}</span> role for a{" "}
-          <span className="font-medium">{job.title}</span> at{" "}
+          This is a{" "}
+          <span className="font-medium">
+            {job.employment_type?.toLowerCase()}
+          </span>{" "}
+          role for a <span className="font-medium">{job.title}</span> at{" "}
           <span className="font-medium">{job.company}</span> located in{" "}
           <span className="font-medium">{job.location}</span>. The role includes
-          responsibilities related to the position and experience level mentioned.
+          responsibilities related to the position and experience level
+          mentioned.
         </p>
       </div>
     </div>

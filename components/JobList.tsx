@@ -1,5 +1,5 @@
 import React from "react";
-import { Job } from "@/types/job"; 
+import { Job } from "@/types/job";
 
 interface JobListProps {
   jobs: Job[];
@@ -7,17 +7,21 @@ interface JobListProps {
   selectedJob: Job | null;
 }
 
-export default function JobList({ jobs, onSelect, selectedJob }: JobListProps) {
+export default function JobList({
+  jobs,
+  onSelect,
+  selectedJob,
+}: JobListProps) {
   if (jobs.length === 0) {
     return (
-      <div className="px-4 py-8 text-center text-gray-400">
+      <div className="px-4 py-8 text-center text-gray-400 text-sm sm:text-base">
         No jobs found.
       </div>
     );
   }
 
   return (
-    <div className="space-y-3 px-2 pb-6">
+    <div className="space-y-4 px-2 sm:px-4 pb-6">
       {jobs.map((job) => {
         const isSelected = selectedJob?.jobId === job.jobId;
 
@@ -31,10 +35,12 @@ export default function JobList({ jobs, onSelect, selectedJob }: JobListProps) {
                 : "bg-white hover:bg-gray-50 border-gray-200"
             }`}
           >
-            <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold text-gray-800">{job.title}</h3>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800">
+                {job.title}
+              </h3>
               {isSelected && (
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-md">
+                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-md self-start sm:self-auto">
                   Selected
                 </span>
               )}
@@ -43,7 +49,7 @@ export default function JobList({ jobs, onSelect, selectedJob }: JobListProps) {
               {job.company} &bull; {job.location}
             </p>
             <p className="text-sm text-gray-500 mt-1">{job.experience}</p>
-            <span className="inline-block mt-2 text-xs text-pink-600 bg-pink-100 px-2 py-1 rounded-full">
+            <span className="inline-block mt-2 text-xs text-pink-600 bg-pink-100 px-2 py-1 rounded-full w-fit">
               ⚡ Quick Apply
             </span>
           </div>

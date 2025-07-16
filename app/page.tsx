@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import JobList from "@/components/JobList";
+import JobDetail from "@/components/JobDetail";
 
 export default function Home() {
   const [jobs, setJobs] = useState<any[]>([]);
@@ -23,30 +24,41 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#f4f4f4] to-[#ffffff] text-black flex flex-col md:flex-row">
-      <div className="w-full md:w-2/5 lg:w-1/3 border-r h-screen overflow-y-auto bg-white shadow-md">
-        <div className="p-6 border-b bg-white sticky top-0 z-10">
-          <h1 className="text-2xl font-bold text-purple-700 mb-4">Find Jobs</h1>
-          <div className="flex gap-2">
+    <div className="min-h-screen flex bg-gray-50 text-gray-900">
+
+      <div className="w-full md:w-2/5 lg:w-1/3 border-r border-gray-200 h-screen overflow-y-auto shadow-sm bg-white">
+
+        <div className="sticky top-0 z-10 bg-white p-4 border-b border-gray-200">
+          <h1 className="text-lg font-semibold mb-2">Search Jobs by Location</h1>
+          <div className="flex items-center gap-2">
             <input
               type="text"
-              placeholder="Search by location..."
+              placeholder="Enter location..."
               value={searchLocation}
               onChange={(e) => setSearchLocation(e.target.value)}
-              className="border border-gray-300 rounded-md p-2 w-full text-sm focus:outline-purple-500"
+              className="flex-1 border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             <button
               onClick={() => fetchJobs(searchLocation)}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm transition"
+              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
             >
               Search
             </button>
           </div>
         </div>
-        <JobList jobs={jobs} onSelect={setSelectedJob} selectedJob={selectedJob} />
+
+
+        <div className="p-2">
+          <JobList jobs={jobs} onSelect={setSelectedJob} selectedJob={selectedJob} />
+        </div>
       </div>
-      <div className="hidden md:flex flex-1 items-center justify-center text-gray-400">
-        <p className="text-lg">Select a job to view details</p>
+
+      <div className="hidden md:block w-0 md:w-3/5 lg:w-2/3 h-screen overflow-y-auto bg-white p-6">
+        {selectedJob ? (
+          <JobDetail job={selectedJob} />
+        ) : (
+          <div className="text-center text-gray-400 mt-20">Select a job to see details</div>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { Briefcase, MapPin } from "lucide-react";
 
 interface JobProps {
   jobs: any[];
@@ -9,32 +8,36 @@ interface JobProps {
 
 export default function JobList({ jobs, onSelect, selectedJob }: JobProps) {
   return (
-    <div className="space-y-2 p-4">
-      {jobs.map((job) => (
-        <div
-          key={job.jobId}
-          onClick={() => onSelect(job)}
-          className={`p-4 rounded-lg cursor-pointer transition shadow-sm hover:shadow-md border ${
-            selectedJob?.jobId === job.jobId
-              ? "bg-purple-100 border-purple-600"
-              : "bg-white border-gray-200"
-          }`}
-        >
-          <h3 className="text-lg font-semibold text-purple-800">{job.title}</h3>
-          <div className="flex items-center text-sm text-gray-600 mt-1 gap-2">
-            <Briefcase className="w-4 h-4" />
-            <span>{job.company}</span>
+    <div className="space-y-3 px-2 pb-6">
+      {jobs.map((job) => {
+        const isSelected = selectedJob?.jobId === job.jobId;
+
+        return (
+          <div
+            key={job.jobId}
+            onClick={() => onSelect(job)}
+            className={`cursor-pointer rounded-md border p-4 shadow-sm transition-all duration-200 ${
+              isSelected
+                ? "bg-purple-50 border-purple-600 shadow-md"
+                : "bg-white hover:bg-gray-50 border-gray-200"
+            }`}
+          >
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold text-gray-800">{job.title}</h3>
+              {isSelected && (
+                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-md">
+                  Selected
+                </span>
+              )}
+            </div>
+            <p className="text-sm text-gray-600 mt-1">{job.company} &bull; {job.location}</p>
+            <p className="text-sm text-gray-500 mt-1">{job.experience}</p>
+            <span className="inline-block mt-2 text-xs text-pink-600 bg-pink-100 px-2 py-1 rounded-full">
+              ⚡ Quick Apply
+            </span>
           </div>
-          <div className="flex items-center text-sm text-gray-500 mt-1 gap-2">
-            <MapPin className="w-4 h-4" />
-            <span>{job.location}</span>
-          </div>
-          <p className="text-sm text-gray-500 mt-1">{job.experience}</p>
-          <span className="inline-block mt-2 text-xs text-pink-600 bg-pink-100 px-2 py-1 rounded-full font-medium">
-            Quick Apply
-          </span>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

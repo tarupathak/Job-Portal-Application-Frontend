@@ -26,21 +26,6 @@ This is the **frontend** for the **Job Listing Web Application**. It allows user
 
 ---
 
-## 📁 Project Structure
-
-frontend/
-├── app/
-│ ├── components/
-│ │ ├── JobList.tsx # Displays job list
-│ │ └── JobDetail.tsx # Displays job details
-│ └── page.tsx # Main homepage layout
-├── styles/
-│ └── globals.css # Tailwind base styles
-├── tailwind.config.ts # Tailwind config
-├── postcss.config.js
-├── tsconfig.json
-├── package.json
-
 ## 🚀 Getting Started Locally
 
 ### 1️⃣ Clone the Repository

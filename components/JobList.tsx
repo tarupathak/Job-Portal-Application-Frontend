@@ -1,12 +1,21 @@
 import React from "react";
+import { Job } from "@/types/job"; 
 
-interface JobProps {
-  jobs: any[];
-  onSelect: (job: any) => void;
-  selectedJob: any;
+interface JobListProps {
+  jobs: Job[];
+  onSelect: (job: Job) => void;
+  selectedJob: Job | null;
 }
 
-export default function JobList({ jobs, onSelect, selectedJob }: JobProps) {
+export default function JobList({ jobs, onSelect, selectedJob }: JobListProps) {
+  if (jobs.length === 0) {
+    return (
+      <div className="px-4 py-8 text-center text-gray-400">
+        No jobs found.
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-3 px-2 pb-6">
       {jobs.map((job) => {
@@ -30,7 +39,9 @@ export default function JobList({ jobs, onSelect, selectedJob }: JobProps) {
                 </span>
               )}
             </div>
-            <p className="text-sm text-gray-600 mt-1">{job.company} &bull; {job.location}</p>
+            <p className="text-sm text-gray-600 mt-1">
+              {job.company} &bull; {job.location}
+            </p>
             <p className="text-sm text-gray-500 mt-1">{job.experience}</p>
             <span className="inline-block mt-2 text-xs text-pink-600 bg-pink-100 px-2 py-1 rounded-full">
               ⚡ Quick Apply

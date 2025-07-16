@@ -1,9 +1,13 @@
 import React from "react";
+import { Job } from "@/types/job";
 
-export default function JobDetail({ job }: { job: any }) {
+interface JobDetailProps {
+  job: Job;
+}
+
+export default function JobDetail({ job }: JobDetailProps) {
   return (
     <div className="p-6 bg-white rounded-lg shadow-sm h-full">
- 
       <div className="flex justify-between items-start border-b pb-4 mb-4">
         <div>
           <h2 className="text-2xl font-bold text-gray-800">{job.title}</h2>

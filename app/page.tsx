@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import JobList from "@/components/JobList";
 import JobDetail from "@/components/JobDetail";
+import { Job } from "@/types/job"; 
 
 export default function Home() {
-  const [jobs, setJobs] = useState<any[]>([]);
-  const [selectedJob, setSelectedJob] = useState<any | null>(null);
+  const [jobs, setJobs] = useState<Job[]>([]); 
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [searchLocation, setSearchLocation] = useState("");
 
   const fetchJobs = async (location = "") => {
